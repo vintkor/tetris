@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background: #f3fcfc;
+}
+
+#canvas {
+    margin-top: 20px;
+    background: #dee;
+    border: 2px solid #bed3d3;
+    position: relative;
+}
+
+#figure {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
