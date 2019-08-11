@@ -9,19 +9,6 @@ function copy(o) {
     return output;
 }
 
-function rotateMap(matrix) {
-    // N-elements matrix rotate
-    matrix = matrix.reverse();
-    for (var i = 0; i < matrix.length; i++) {
-        for (var j = 0; j < i; j++) {
-            var temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
-        }
-    }
-    return matrix
-}
-
 class Figure {
     constructor() {
         this.map = []
@@ -33,19 +20,32 @@ class Figure {
         this.ctx.clearRect(0, 0, 220, 407)
     }
 
-    rotate() {
-        this.map = rotateMap(copy(this.map))
-    }
-
     draw(gameMap, gameInitials) {
         this.clear()
         for (let row = 0; row < this.map.length; row++) {
-            for (let col = 0; col < this.map.length; col++) {
-                if (this.map[col][row]) {
+            for (let col = 0; col < this.map[row].length; col++) {
+                if (this.map[row][col]) {
                     this.ctx.fillRect(row * 11 + gameInitials[0], col * 11 + gameInitials[1], 10, 10)
                 }
             }
         }
+    }
+
+    rotate() {
+        const reverceMatrix = copy(this.map).reverse()
+        const newFigure = []
+
+        for (let col = 0; col < reverceMatrix[0].length; col++) {
+
+            const temp = []
+            for (let row = 0; row < reverceMatrix.length; row++) {
+                temp.push(reverceMatrix[row][col])
+            }
+            newFigure.push(temp)
+
+        }
+
+        this.map = newFigure;
     }
 }
 
@@ -98,6 +98,16 @@ class ZFigure extends Figure {
         super(ctx);
         this.map = [
             [1, 1, 0],
+            [0, 1, 1],
+        ]
+    }
+}
+
+class longZFigure extends Figure {
+    constructor(ctx) {
+        super(ctx);
+        this.map = [
+            [1, 1, 0],
             [0, 1, 0],
             [0, 1, 1],
         ]
@@ -112,6 +122,7 @@ class Game {
             new LFigure(),
             new TFigure(),
             new ZFigure(),
+            new longZFigure(),
         ]
         this.gameMap = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
