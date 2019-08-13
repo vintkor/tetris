@@ -11,6 +11,8 @@ body {
     background: #dee;
     border: 2px solid #bed3d3;
     position: relative;
+    width: 219px;
+    height: 406px;
 }
 
 #figure {

@@ -20,12 +20,13 @@ class Figure {
         this.ctx.clearRect(0, 0, 220, 407)
     }
 
-    draw(gameMap, gameInitials) {
+    draw(gameInitials) {
         this.clear()
         for (let row = 0; row < this.map.length; row++) {
-            for (let col = 0; col < this.map[row].length; col++) {
-                if (this.map[row][col]) {
-                    this.ctx.fillRect(row * 11 + gameInitials[0], col * 11 + gameInitials[1], 10, 10)
+            const el = this.map[row]
+            for (let col = 0; col < el.length; col++) {
+                if (el[col]) {
+                    this.ctx.fillRect(col * 11 + gameInitials[0], row * 11 + gameInitials[1], 10, 10)
                 }
             }
         }
@@ -117,52 +118,15 @@ class longZFigure extends Figure {
 class Game {
     constructor() {
         this.figures = [
-            new BFigure(),
+            // new BFigure(),
             new IFigure(),
-            new LFigure(),
-            new TFigure(),
-            new ZFigure(),
-            new longZFigure(),
+            // new LFigure(),
+            // new TFigure(),
+            // new ZFigure(),
+            // new longZFigure(),
         ]
-        this.gameMap = [
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-        ]
+        this.gameMap = []
+        this.generateGameMap()
         this.keyCodes = ["ArrowUp", "ArrowDown", "ArrowRight", "ArrowLeft", "Space", "Enter"]
         this.canvas = document.getElementById('game')
         this.ctx = this.canvas.getContext('2d')
@@ -177,6 +141,16 @@ class Game {
         this.choiseRandomFigure()
     }
 
+    generateGameMap() {
+        for (let i = 0; i < 40; i++) {
+            const row = []
+            for (let j = 0; j < 20; j++) {
+                row.push(0)
+            }
+            this.gameMap.push(row)
+        }
+    }
+
     choiseRandomFigure() {
         this.figure = this.figures[Math.floor(Math.random() * this.figures.length)]
     }
@@ -188,7 +162,7 @@ class Game {
             const math = this.initial[0] + this.size * this.figure.map[0].length
             if (math < 220) this.initial[0] += this.size
         }
-        this.figure.draw(this.gameMap, this.initial)
+        this.figure.draw(this.initial)
     }
 
     fall() {
@@ -213,7 +187,7 @@ class Game {
     run() {
         if (!this.isGameOver) {
             this.loop = setInterval(() => {
-                this.figure.draw(this.gameMap, this.initial)
+                this.figure.draw(this.initial)
                 this.drawGameField()
                 this.fall()
             }, 1000 / this.speed);
@@ -233,7 +207,7 @@ class Game {
                 self.pauseSwitcher()
             } else if (eventCode == 'Enter') {
                 this.figure.rotate()
-                this.figure.draw(this.gameMap, this.initial)
+                this.figure.draw(this.initial)
             }
             else {
                 self.move(eventCode)
