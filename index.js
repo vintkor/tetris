@@ -119,9 +119,9 @@ class Game {
     constructor() {
         this.figures = [
             // new BFigure(),
-            new IFigure(),
+            // new IFigure(),
             // new LFigure(),
-            // new TFigure(),
+            new TFigure(),
             // new ZFigure(),
             // new longZFigure(),
         ]
@@ -203,9 +203,9 @@ class Game {
     keyboardHandle(self, event) {
         const eventCode = event.code
         if (self.keyCodes.includes(eventCode)) {
-            if (eventCode == 'Space') {
+            if (eventCode == 'Enter') {
                 self.pauseSwitcher()
-            } else if (eventCode == 'Enter') {
+            } else if (eventCode == 'Space') {
                 this.figure.rotate()
                 this.figure.draw(this.initial)
             }
